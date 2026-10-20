@@ -1,0 +1,260 @@
+QUESTION 1
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    int distance;
+    char member_str[10];
+    int is_member = 0;
+    float fare = 100.0;
+
+    // Reading inputs
+    printf("Distance: ");
+    if (scanf("%d", &distance) != 1) return 0;
+    printf("Member: ");
+    scanf("%s", member_str);
+
+    if (strcmp(member_str, "true") == 0 || strcmp(member_str, "1") == 0) {
+        is_member = 1;
+    }
+
+    // Additional charge logic
+    if (distance > 10) {
+        fare += (distance - 10) * 20;
+    }
+
+    // Membership discount
+    if (is_member) {
+        fare = fare * 0.90;
+    }
+
+    printf("Final Fare: ₹%.0f\n", fare);
+    return 0;
+}
+
+QUESTION 2
+
+#include <stdio.h>
+
+int main() {
+    int questions_answered, remaining_time, already_submitted;
+
+    printf("Questions Answered: ");
+    scanf("%d", &questions_answered);
+    printf("Remaining Time: ");
+    scanf("%d", &remaining_time);
+    printf("Already Submitted: ");
+    scanf("%d", &already_submitted);
+
+    // Conditional evaluation
+    if (already_submitted == 0 && questions_answered >= 1 && remaining_time > 0) {
+        printf("Submission Allowed\n");
+    } else {
+        printf("Submission Not Allowed\n");
+    }
+
+    return 0;
+}
+
+QUESTION 3
+
+#include <stdio.h>
+
+int main() {
+    int total_coins, x, y;
+    int ben_share, blackbeard_share, others_share, remaining_coins;
+
+    scanf("%d", &total_coins);
+    scanf("%d", &x);
+    scanf("%d", &y);
+
+    // Long Ben's absolute share
+    ben_share = (total_coins * x) / 100;
+    remaining_coins = total_coins - ben_share;
+
+    // Blackbeard's absolute share from remaining
+    blackbeard_share = (remaining_coins * y) / 100;
+    remaining_coins = remaining_coins - blackbeard_share;
+
+    // Divided equally among the 3 remaining pirates
+    others_share = remaining_coins / 3;
+
+    printf("%d\n", ben_share);
+    printf("%d\n", blackbeard_share);
+    printf("%d\n", others_share);
+
+    return 0;
+}
+
+QUESTION 4
+
+#include <stdio.h>
+
+int main() {
+    int d1, c1, d2, c2;
+    int total_dollars, total_cents;
+
+    scanf("%d %d %d %d", &d1, &c1, &d2, &c2);
+
+    total_dollars = d1 + d2;
+    total_cents = c1 + c2;
+
+    // Carry over conversion
+    total_dollars += total_cents / 100;
+    total_cents = total_cents % 100;
+
+    printf("%d\n", total_dollars);
+    printf("%d\n", total_cents);
+
+    return 0;
+}
+
+QUESTION 5
+
+#include <stdio.h>
+
+int main() {
+    float mileage;
+    int liters, distance;
+
+    scanf("%f %d %d", &mileage, &liters, &distance);
+
+    // Total distance coverage possible
+    float max_distance = mileage * liters;
+
+    if (max_distance >= distance) {
+        printf("Can reach\n");
+    } else {
+        printf("Cannot reach\n");
+    }
+
+    return 0;
+}
+
+QUESTION 6
+
+#include <stdio.h>
+
+int main() {
+    int a, b, c, car_num;
+    scanf("%d %d %d %d", &a, &b, &c, &car_num);
+
+    // Finding the path where the road token is divisible by the car number
+    if (a % car_num == 0) {
+        printf("Car %d goes into road A\n", car_num);
+    } else if (b % car_num == 0) {
+        printf("Car %d goes into road B\n", car_num);
+    } else if (c % car_num == 0) {
+        printf("Car %d goes into road C\n", car_num);
+    } else {
+        printf("No path exists\n");
+    }
+
+    return 0;
+}
+
+QUESTION 7
+
+#include <stdio.h>
+
+int main() {
+    int p, r, y;
+    float interest, total_amount, discount, final_settlement;
+
+    scanf("%d %d %d", &p, &r, &y);
+
+    interest = (float)(p * r * y) / 100.0;
+    total_amount = p + interest;
+    discount = interest * 0.02; // 2% discount on the interest
+    final_settlement = total_amount - discount;
+
+    printf("%.2f\n", interest);
+    printf("%.2f\n", total_amount);
+    printf("%.2f\n", discount);
+    printf("%.2f\n", final_settlement);
+
+    return 0;
+}
+
+QUESTION 8
+
+#include <stdio.h>
+
+int main() {
+    int exp, perf;
+    
+    printf("Experience: ");
+    scanf("%d", &exp);
+    printf("Performance: ");
+    scanf("%d", &perf);
+
+    if (exp > 7 && perf >= 85) {
+        printf("Level: Senior\n");
+    } else if (exp >= 3 && exp <= 7 && perf >= 80) {
+        printf("Level: Mid-Level\n");
+    } else {
+        printf("Level: Junior\n");
+    }
+
+    return 0;
+}
+
+QUESTION 9
+
+#include <stdio.h>
+
+int main() {
+    int year, month;
+    scanf("%d %d", &year, &month);
+
+    // Range boundary validation
+    if (year < 1900 || year > 9999 || month < 1 || month > 12) {
+        printf("0\n");
+        return 0;
+    }
+
+    switch(month) {
+        case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+            printf("31 Days\n");
+            break;
+        case 4: case 6: case 9: case 11:
+            printf("30 Days\n");
+            break;
+        case 2:
+            // Leap year detection logic
+            if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+                printf("29 Days\n");
+            } else {
+                printf("28 Days\n");
+            }
+            break;
+    }
+
+    return 0;
+}
+
+QUESTION 10
+
+#include <stdio.h>
+
+int main() {
+    int units;
+    float bill = 0;
+
+    scanf("%d", &units);
+
+    if (units <= 200) {
+        bill = units * 0.5;
+    } else if (units <= 400) {
+        bill = (units * 0.65) + 100;
+    } else if (units <= 600) {
+        bill = (units * 0.80) + 200;
+    } else {
+        bill = (units * 1.25) + 425;
+    }
+
+    printf("Rs.%.0f\n", bill);
+    return 0;
+}
+
